@@ -45,7 +45,7 @@ jobs:
       - name: Run MATLAB tests
         uses: matlab-actions/run-tests@v2
         with:
-          test-results-junit: test-results/results.xml
+          test-results-pdf: test-results/testReport.pdf
           select-by-folder: test
           source-folder: source
 
@@ -53,4 +53,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: figuresTest
-          path: testExportedFigures
+          path: test/testExportedFigures
+
+      - name: Archive MATLAB test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: testReport
+          path: test-results/testReport.pdf
