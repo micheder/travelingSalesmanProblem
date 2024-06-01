@@ -75,7 +75,7 @@ classdef solverTravelingSalesman_test < matlab.unittest.TestCase
 
             figName = ['solveBruteForce_',num2str(testCase.numCities),'_cities.png'];
             filePathFig = fullfile(testCase.filePath,figName);
-            saveas(fig,filePathFig);
+            %saveas(fig,filePathFig);
             close(fig);
 
             % Comparison
@@ -107,7 +107,7 @@ classdef solverTravelingSalesman_test < matlab.unittest.TestCase
 
             figName = ['solveSimulatedAnnealing_',num2str(testCase.numCities),'_cities.png'];
             filePathFig = fullfile(testCase.filePath,figName);
-            saveas(fig,filePathFig);
+            %saveas(fig,filePathFig);
             close(fig);
 
             % Comparison

@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: figuresDemonstrationMain
-          path: demoExportedFigures
+          path: source/demoExportedFigures
 
   runTests:
     runs-on: ubuntu-latest
@@ -48,9 +48,3 @@ jobs:
           test-results-junit: test-results/results.xml
           select-by-folder: test
           source-folder: source
-
-      - name: Archive MATLAB exported figures
-        uses: actions/upload-artifact@v4
-        with:
-          name: figures
-          path: test/exportedFigures
