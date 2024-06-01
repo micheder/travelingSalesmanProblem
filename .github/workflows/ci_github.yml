@@ -1,0 +1,53 @@
+name: ci_github
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:          
+  demoMain:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+          
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        
+      - name: Run MATLAB script
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            main
+
+      - name: Archive MATLAB exported figures
+        uses: actions/upload-artifact@v4
+        with:
+          name: figuresDemonstrationMain
+          path: demoExportedFigures
+
+  runTests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+          
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        
+      - name: Run MATLAB tests
+        uses: matlab-actions/run-tests@v2
+        with:
+          test-results-junit: test-results/results.xml
+
+      - name: Archive MATLAB exported figures
+        uses: actions/upload-artifact@v4
+        with:
+          name: figures
+          path: test/exportedFigures
