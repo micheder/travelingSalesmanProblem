@@ -23,6 +23,7 @@ jobs:
         uses: matlab-actions/run-command@v2
         with:
           command: |
+            cd source
             main
 
       - name: Archive MATLAB exported figures
@@ -45,6 +46,8 @@ jobs:
         uses: matlab-actions/run-tests@v2
         with:
           test-results-junit: test-results/results.xml
+          select-by-folder: test
+          source-folder: source
 
       - name: Archive MATLAB exported figures
         uses: actions/upload-artifact@v4
